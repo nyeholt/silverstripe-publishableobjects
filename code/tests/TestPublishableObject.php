@@ -19,7 +19,6 @@ class TestPublishableObject extends SapphireTest {
 	public function testCreatePublishableObject() {
 		$member = Security::findAnAdministrator();
 		$member->logIn();
-//		findAnAdministrator$this->session()->inst_set('loggedInAs', $memberID);
 		
 		$object = new TestPublishableDataObject();
 

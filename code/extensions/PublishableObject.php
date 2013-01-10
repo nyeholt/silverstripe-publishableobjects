@@ -1,5 +1,4 @@
 <?php
-/* All code covered by the BSD license located at http://silverstripe.org/bsd-license/ */
 
 /**
  * An extension to abstract some of the functionality around publishing, for objects that aren't
@@ -7,18 +6,15 @@
  *
  * @author Marcus Nyeholt <marcus@silverstripe.com.au>
  */
-class PublishableObject extends DataObjectDecorator {
-	public function extraStatics() {
-		return array(
-			'db' => array(
-				'Status' => "Enum('New,Draft,Published,Unpublished,Saved (update)')"
-			),
-			'has_one' => array(
-				'Owner' => 'Member'
-			)
-		);
-	}
-
+class PublishableObject extends DataExtension {
+	public static $db = array(
+		'Status' => "Enum('New,Draft,Published,Unpublished,Saved (update)')"
+	);
+	
+	public static $has_one = array(
+		'Owner' => 'Member'
+	);
+	
 	public function onBeforeWrite() {
 		if (!$this->owner->Status) {
 			$this->owner->Status = 'New';
