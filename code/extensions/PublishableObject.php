@@ -58,6 +58,8 @@ class PublishableObject extends DataExtension {
 		$ownerId = $this->owner->ID;
 
 		$dataClasses = ClassInfo::dataClassesFor($class);
+		$dataClasses = array_values($dataClasses);
+		
 		$class = $dataClasses[count($dataClasses) - 1];
 
 		$original = Versioned::get_one_by_stage("$class", "Live", "\"$class\".\"ID\" = $ownerId");
